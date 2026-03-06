@@ -104,7 +104,6 @@
 // }
 
 
-
 import { Canvas } from "@react-three/fiber";
 import { Environment, Stars, OrbitControls } from "@react-three/drei";
 import Laptop from "./Components/Laptop";
@@ -115,45 +114,6 @@ import Hero from "./Ui/Hero";
 import Website from "./Scenes/Website";
 import Hotspots from "./Components/Hotspots";
 import HotspotInfo from "./Ui/HotspotInfo";
-import { useThree } from "@react-three/fiber";
-import gsap from "gsap";
-
-function CameraReset({ activeHotspot, setActiveHotspot }) {
-  const { camera } = useThree();
-
-  const resetCamera = () => {
-    const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
-
-    tl.to(camera.position, {
-      x: 0,
-      y: 25,
-      z: 140,
-      duration: 2,
-      onUpdate: () => camera.lookAt(52, 2, 0),
-    });
-
-    tl.to(
-      camera,
-      {
-        fov: 40,
-        duration: 2,
-        onUpdate: () => camera.updateProjectionMatrix(),
-      },
-      0
-    );
-
-    tl.call(() => setActiveHotspot(null));
-  };
-
-  if (!activeHotspot) return null;
-
-  return (
-    <HotspotInfo
-      name={activeHotspot}
-      onBack={resetCamera}
-    />
-  );
-}
 
 export default function App() {
   const [start, setStart] = useState(false);
@@ -165,8 +125,11 @@ export default function App() {
   const overlayRef = useRef(null);
 
   useEffect(() => {
-    if (!enterWebsite) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "auto";
+    if (!enterWebsite) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
   }, [enterWebsite]);
 
   useEffect(() => {
@@ -181,6 +144,15 @@ export default function App() {
         <Hero onExplore={() => setExplore(true)} />
       )}
 
+      {/* ⭐ Hotspot UI (outside Canvas) */}
+      {activeHotspot && (
+        <HotspotInfo
+          name={activeHotspot}
+          onBack={() => setActiveHotspot(null)}
+        />
+      )}
+
+      {/* WEBSITE OVERLAY */}
       {enterWebsite && (
         <div ref={overlayRef} className="websiteOverlay">
           <Website scrollerRef={overlayRef} />
@@ -188,11 +160,6 @@ export default function App() {
       )}
 
       <Canvas camera={{ position: [50, 36, 45], fov: 40 }}>
-        <CameraReset
-          activeHotspot={activeHotspot}
-          setActiveHotspot={setActiveHotspot}
-        />
-
         <CameraController
           start={start}
           explore={explore}
@@ -229,6 +196,7 @@ export default function App() {
           <Hotspots setActiveHotspot={setActiveHotspot} />
         )}
 
+        {/* Disable orbit when hotspot active */}
         {explore && !focusLaptop && !activeHotspot && (
           <OrbitControls
             target={[52, 2, 0]}

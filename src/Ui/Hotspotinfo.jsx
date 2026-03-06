@@ -26,9 +26,7 @@
 //       <p>{data[name]}</p>
 //     </div>
 //   );
-// }
-
-import { useEffect, useRef } from "react";
+// }import { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 export default function HotspotInfo({ name, onBack }) {
@@ -38,7 +36,7 @@ export default function HotspotInfo({ name, onBack }) {
     gsap.fromTo(
       cardRef.current,
       { y: 100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
     );
   }, [name]);
 
@@ -47,7 +45,8 @@ export default function HotspotInfo({ name, onBack }) {
       "A collection of my best interactive and production-ready projects.",
     Skills:
       "React, Three.js, GSAP, WebGL, UI/UX and performance-focused development.",
-    About: "Creative front-end developer building immersive web experiences.",
+    About:
+      "Creative front-end developer building immersive web experiences.",
   };
 
   return (
