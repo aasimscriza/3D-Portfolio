@@ -7,7 +7,7 @@ import CameraController from "./Components/CameraController";
 import Hero from "./Ui/Hero";
 import Website from "./Scenes/Website";
 import Hotspots from "./Components/Hotspots";
-import HotspotInfo from "./Ui/Hotspotinfo";
+import LaptopScreen from "./Ui/LaptopScreen";
 
 export default function App() {
   const [start, setStart] = useState(false);
@@ -86,11 +86,12 @@ export default function App() {
           onLaptopClick={() => setFocusLaptop(true)}
         />
 
+        <LaptopScreen activeHotspot={activeHotspot} />
+
         {explore && !focusLaptop && (
           <Hotspots setActiveHotspot={setActiveHotspot} />
         )}
 
-        {/* Disable orbit when hotspot active */}
         {explore && !focusLaptop && !activeHotspot && (
           <OrbitControls
             target={[52, 2, 0]}
