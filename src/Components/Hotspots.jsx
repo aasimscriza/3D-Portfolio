@@ -3,7 +3,12 @@ import { useThree, useFrame } from "@react-three/fiber";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 
-export default function Hotspots({ setActiveHotspot, onGoBack, setFocusLaptop, setEnterWebsite }) {
+export default function Hotspots({
+  setActiveHotspot,
+  onGoBack,
+  setFocusLaptop,
+  setEnterWebsite,
+}) {
   const { camera } = useThree();
 
   const goBack = () => {
