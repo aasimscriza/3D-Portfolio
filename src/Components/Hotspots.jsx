@@ -48,31 +48,23 @@ export default function Hotspots({ setActiveHotspot }) {
     {
       name: "About",
       position: [61, 7.5, -1.5],
-
-      camPos: [50, 3, 4],
+      camPos: [30, 8, 25],
       lookTarget: [52, 2, 0],
-
-      fov: 20,
+      fov: 35,
     },
-
     {
       name: "Projects",
       position: [54, 2.5, -4.5],
-
-      camPos: [50, 3, 4],
+      camPos: [30, 8, 25],
       lookTarget: [52, 2, 0],
-
-      fov: 20,
+      fov: 35,
     },
-
     {
       name: "Skills",
       position: [48, -0.8, -7.5],
-
-      camPos: [50, 3, 4],
+      camPos: [30, 8, 25],
       lookTarget: [52, 2, 0],
-
-      fov: 20,
+      fov: 35,
     },
   ];
 

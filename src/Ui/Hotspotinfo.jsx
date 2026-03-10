@@ -21,9 +21,9 @@ export default function HotspotInfo({ name, onBack }) {
     About: "Creative front-end developer building immersive web experiences.",
   };
 
+
   return (
     <div ref={cardRef} className="hotspotCard">
-      {/* header row with title + back button side by side */}
       <div className="cardHeader">
         <h2 className="cardTitle">{name}</h2>
         <button className="backBtn" onClick={onBack}>
