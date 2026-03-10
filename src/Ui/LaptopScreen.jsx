@@ -6,7 +6,11 @@ export default function LaptopScreen({ activeHotspot }) {
   const screenRef = useRef();
 
   useEffect(() => {
-    if (!activeHotspot) return;
+    if (!activeHotspot || !screenRef.current) return;
+
+    // reset first to ensure it's visible even if gsap fails
+    screenRef.current.style.opacity = 1;
+    screenRef.current.style.transform = "scale(1)";
 
     gsap.fromTo(
       screenRef.current,
@@ -20,9 +24,7 @@ export default function LaptopScreen({ activeHotspot }) {
   const data = {
     Projects:
       "A collection of my best interactive and production-ready projects.",
-
     Skills: "React, Three.js, GSAP, WebGL and performance-focused development.",
-
     About: "Creative front-end developer building immersive web experiences.",
   };
 
@@ -41,6 +43,7 @@ export default function LaptopScreen({ activeHotspot }) {
           height: "640px",
           background: "#111",
           color: "white",
+          opacity: 1, // ← default visible
           borderRadius: "12px",
           display: "flex",
           flexDirection: "column",
@@ -54,7 +57,6 @@ export default function LaptopScreen({ activeHotspot }) {
         <h1 style={{ fontSize: "64px", marginBottom: "20px" }}>
           {activeHotspot}
         </h1>
-
         <p style={{ fontSize: "22px", maxWidth: "700px", lineHeight: "1.6" }}>
           {data[activeHotspot]}
         </p>
