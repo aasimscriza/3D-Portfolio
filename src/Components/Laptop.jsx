@@ -11,7 +11,7 @@ export default function Laptop({ onLaptopClick, focusLaptop, explore }) {
   const baseRotation = [0, -0.44, 0];
 
   useFrame((state) => {
-    // ⭐ STOP floating when explore starts OR laptop is focused
+    // STOP floating when explore starts OR laptop is focused
     if (explore || focusLaptop) {
       laptopRef.current.position.set(...basePosition);
       laptopRef.current.rotation.set(...baseRotation);
