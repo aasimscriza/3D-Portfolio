@@ -5,46 +5,14 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  /* overflow: hidden; */
+  overflow-x: hidden;
 }
 
 canvas {
   display: block;
 }
 
-/* ========== StartScreen code =========== */
-
-.startScreen {
-  position: fixed;
-  inset: 0;
-  background: black;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  z-index: 10;
-}
-
-.startScreen h1 {
-  font-size: 48px;
-  margin: 0;
-}
-
-.startScreen p {
-  opacity: 0.7;
-}
-
-.startScreen button {
-  padding: 14px 28px;
-  font-size: 18px;
-  background: white;
-  color: black;
-  border: none;
-  cursor: pointer;
-}
-
+/* ========== StartScreen ========== */
 .startWrapper {
   position: fixed;
   inset: 0;
@@ -63,7 +31,6 @@ canvas {
 .leftPanel {
   left: 0;
 }
-
 .rightPanel {
   right: 0;
 }
@@ -79,6 +46,15 @@ canvas {
   gap: 16px;
 }
 
+.startContent h1 {
+  font-size: 48px;
+  margin: 0;
+}
+
+.startContent p {
+  opacity: 0.7;
+}
+
 .startContent button {
   padding: 14px 28px;
   font-size: 18px;
@@ -87,8 +63,7 @@ canvas {
   cursor: pointer;
 }
 
-/* HERO FULL WIDTH LAYOUT */
-
+/* ========== Hero ========== */
 .hero {
   position: fixed;
   inset: 0;
@@ -101,7 +76,6 @@ canvas {
   pointer-events: none;
 }
 
-/* big title across screen */
 .heroTitle {
   font-size: 72px;
   color: white;
@@ -112,7 +86,6 @@ canvas {
   pointer-events: none;
 }
 
-/* subtitle */
 .heroSub {
   color: white;
   opacity: 0.85;
@@ -123,7 +96,6 @@ canvas {
   pointer-events: none;
 }
 
-/* button under laptop */
 .heroBtn {
   position: fixed;
   bottom: 8vh;
@@ -137,23 +109,83 @@ canvas {
   pointer-events: auto;
 }
 
-/* Laptop screeen */
-
-.screen {
-  width: 1024px;
-  height: 640px;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  color: #000;
+/* ========== Main Page ========== */
+.mainPage {
+  width: 100%;
 }
 
-/* =============== */
+.canvasWrapper {
+  width: 100%;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
 
+/* ========== Products Scroll ========== */
+.productsScroll {
+  background: black;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.productScrollSection {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 80px;
+  color: white;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 16px;
+}
+
+.productNumber {
+  font-size: 13px;
+  opacity: 0.4;
+  letter-spacing: 3px;
+}
+
+.productName {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.productDesc {
+  font-size: 16px;
+  opacity: 0.7;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.productPrice {
+  font-size: 28px;
+  font-weight: 600;
+  color: #00ffcc;
+}
+
+.productBtn {
+  margin-top: 8px;
+  padding: 12px 28px;
+  background: white;
+  color: black;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.productBtn:hover {
+  background: #00ffcc;
+}
+
+/* ========== Website Overlay ========== */
 .websiteOverlay {
   position: fixed;
   inset: 0;
@@ -163,69 +195,14 @@ canvas {
   overflow-x: hidden;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* ===== WEBSITE OVERLAY ===== */
-
 .website {
   width: 100vw;
-  background: #e9dcdc;
-  color: white;
-  font-family: sans-serif;
-}
-
-/* ======website.jsx code======= */
-
-.website {
   background: black;
   color: white;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-.frame {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 0 40px;
-}
-
-.content {
-  max-width: 900px;
-}
-
-.content h1 {
-  font-size: 80px;
-  margin-bottom: 30px;
-  font-weight: 600;
-}
-
-.content p {
-  font-size: 24px;
-  opacity: 0.8;
-  line-height: 1.6;
-}
-
-.finalFrame h1 {
-  font-size: 50px;
-  opacity: 0.8;
-}
-
-.finalFrame p {
-  font-size: 90px;
-  font-weight: 700;
-}
-
-/* ============hotspot=========== */
-
+/* ========== Hotspot ========== */
 .hotspotLabel {
   background: white;
   color: black;
@@ -235,6 +212,7 @@ canvas {
   white-space: nowrap;
   font-weight: 600;
 }
+
 .hotspotCard {
   position: fixed;
   background: rgba(5, 5, 20, 0.85);
@@ -244,6 +222,7 @@ canvas {
   border-radius: 16px;
   z-index: 9999;
   border: 1px solid rgba(255, 255, 255, 0.12);
+  width: 260px;
 }
 
 .cardTitle {
@@ -272,9 +251,86 @@ canvas {
 .backBtn:hover {
   background: rgba(255, 255, 255, 0.1);
 }
-.cardHeader {
+
+/* ========== Laptop Screen ========== */
+.screen {
+  width: 1024px;
+  height: 640px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 12px;
+  flex-direction: column;
+  color: #000;
+}
+
+/* ========== Website Hero ========== */
+.websiteHero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+.websiteHero h1 {
+  font-size: 80px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.websiteHero p {
+  font-size: 20px;
+  opacity: 0.5;
+  margin-top: 16px;
+}
+
+.scrollIndicator {
+  margin-top: 40px;
+  font-size: 30px;
+  opacity: 0.4;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+/* ========== Product Section (Website) ========== */
+.productSection {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+}
+
+.productCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.productOverlay {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  color: white;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
 }
