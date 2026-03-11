@@ -1,7 +1,7 @@
-import { useRef, useEffect } from "react";
-import gsap from "gsap";
+// import { useRef, useEffect } from "react";
+// import gsap from "gsap";
 
-// export default function Hero({ onExplore }) {
+// export default function Hero({ onExplore, scrollRef }) {
 //   const titleRef = useRef();
 //   const subRef = useRef();
 //   const btnRef = useRef();
@@ -41,36 +41,27 @@ import gsap from "gsap";
 //       },
 //     );
 
-//     // const handleScroll = () => {
-//     //   const scrollY = window.scrollY || document.documentElement.scrollTop;
-//     //   const progress = Math.min(scrollY / 300, 1);
-
-//     //   gsap.to(heroRef.current, {
-//     //     x: `${progress * 60}vw`,
-//     //     opacity: 1 - progress,
-//     //     duration: 0.1,
-//     //     ease: "none",
-//     //   });
-//     // };
 //     const handleScroll = () => {
-//       const scrollY = window.scrollY || document.documentElement.scrollTop;
-//       const progress = Math.min(scrollY / 200, 1);
+//       // ← use document.documentElement.scrollTop OR scrollRef
+//       const scrollY =
+//         document.documentElement.scrollTop || document.body.scrollTop;
+//       const progress = Math.min(scrollY / 300, 1);
 
 //       gsap.to(heroRef.current, {
 //         opacity: 1 - progress,
-//         y: -progress * 40, // slight upward movement
+//         y: -progress * 40,
 //         duration: 0.1,
 //         ease: "none",
 //       });
 
-//       // disable pointer events when hidden
 //       if (heroRef.current) {
 //         heroRef.current.style.pointerEvents = progress >= 1 ? "none" : "auto";
 //       }
 //     };
 
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
+//     // ← listen on document, not window
+//     document.addEventListener("scroll", handleScroll);
+//     return () => document.removeEventListener("scroll", handleScroll);
 //   }, []);
 
 //   const handleExplore = () => {
@@ -93,6 +84,11 @@ import gsap from "gsap";
 //     </section>
 //   );
 // }
+
+
+import { useRef, useEffect } from "react";
+import gsap from "gsap";
+
 export default function Hero({ onExplore, scrollRef }) {
   const titleRef = useRef();
   const subRef = useRef();
@@ -122,26 +118,27 @@ export default function Hero({ onExplore, scrollRef }) {
       }
     );
 
-    const handleScroll = () => {
-      // ← use document.documentElement.scrollTop OR scrollRef
-      const scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-      const progress = Math.min(scrollY / 300, 1);
+    // ← Watch the products section appearing
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // products visible → hide hero
+          gsap.to(heroRef.current, { opacity: 0, y: -30, duration: 0.5 });
+          if (btnRef.current) btnRef.current.style.pointerEvents = "none";
+        } else {
+          // back to top → show hero
+          gsap.to(heroRef.current, { opacity: 1, y: 0, duration: 0.5 });
+          if (btnRef.current) btnRef.current.style.pointerEvents = "auto";
+        }
+      },
+      { threshold: 0.1 }
+    );
 
-      gsap.to(heroRef.current, {
-        opacity: 1 - progress,
-        y: -progress * 40,
-        duration: 0.1,
-        ease: "none",
-      });
+    // observe the products scroll div
+    const productsEl = document.querySelector(".productsScroll");
+    if (productsEl) observer.observe(productsEl);
 
-      if (heroRef.current) {
-        heroRef.current.style.pointerEvents = progress >= 1 ? "none" : "auto";
-      }
-    };
-
-    // ← listen on document, not window
-    document.addEventListener("scroll", handleScroll);
-    return () => document.removeEventListener("scroll", handleScroll);
+    return () => observer.disconnect();
   }, []);
 
   const handleExplore = () => {
