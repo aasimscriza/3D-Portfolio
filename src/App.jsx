@@ -209,7 +209,7 @@ function Products({ onViewDetails }) {
               View Details
             </button>
           </div>
-          <div className="productImage">[ 3D MODEL / IMAGE ]</div>
+        
         </div>
       ))}
     </div>
