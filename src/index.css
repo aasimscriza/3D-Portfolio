@@ -111,28 +111,27 @@ canvas {
 }
 
 /* ========== Main Page ========== */
+/* ========== Main Page ========== */
 .mainPage {
   width: 100%;
   position: relative;
 }
-/* ← KEY FIX: canvas stays behind, products scroll over it */
+
 .canvasWrapper {
   width: 100%;
   height: 100vh;
   position: sticky;
   top: 0;
   z-index: 0;
-  pointer-events: none;
 }
 
 /* ========== Products Scroll ========== */
-/* ← KEY FIX: transparent + only left half */
 .productsScroll {
-  background: transparent;
-  width: 45%;
+  background: #0a0a0f; /* ← solid dark color, visible! */
+  width: 100%; /* ← full width */
   position: relative;
-  z-index: 3; /* ← above canvas */
-  pointer-events: auto;
+  z-index: 2;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .productScrollSection {
@@ -141,11 +140,10 @@ canvas {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 0 60px;
+  padding: 0 10vw;
   color: white;
   gap: 16px;
-  position: relative;
-  z-index: 3;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 .productNumber {
   font-size: 13px;

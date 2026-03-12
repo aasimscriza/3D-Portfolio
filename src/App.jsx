@@ -1,4 +1,3 @@
-
 import { Canvas } from "@react-three/fiber";
 import { Environment, Stars, OrbitControls } from "@react-three/drei";
 import Laptop from "./Components/Laptop";
@@ -16,7 +15,8 @@ function Products() {
       id: 1,
       name: "Apple MacBook Pro",
       price: "$1,999",
-      description: "Next-generation performance. M3 chip. All day battery life.",
+      description:
+        "Next-generation performance. M3 chip. All day battery life.",
     },
     {
       id: 2,
@@ -53,7 +53,7 @@ export default function App() {
   const [focusLaptop, setFocusLaptop] = useState(false);
   const [enterWebsite, setEnterWebsite] = useState(false);
   const [activeHotspot, setActiveHotspot] = useState(null);
-  const [productsVisible, setProductsVisible] = useState(false);  // ← new
+  const [productsVisible, setProductsVisible] = useState(false); // ← new
 
   const overlayRef = useRef(null);
   const goBackRef = useRef(null);
@@ -79,7 +79,7 @@ export default function App() {
         <Hero
           onExplore={() => setExplore(true)}
           scrollRef={mainPageRef}
-          onProductsVisible={setProductsVisible}  // ← new
+          onProductsVisible={setProductsVisible}
         />
       )}
 
@@ -119,7 +119,7 @@ export default function App() {
             <Laptop
               explore={explore}
               focusLaptop={focusLaptop}
-              productsVisible={productsVisible}  // ← new
+              productsVisible={productsVisible} // ← new
               onLaptopClick={() => {
                 setFocusLaptop(true);
                 setActiveHotspot(null);
