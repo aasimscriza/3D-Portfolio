@@ -9,20 +9,20 @@ const PRODUCTS = [
     hotspots: [
       {
         id: 1,
-        label: "M3 Chip",
-        position: { top: "80%", left: "10%" },
-        cameraX: -1,
-        cameraY: -0.5,
-        cameraZ: 2.5, // ← zoom to chip area
-        info: "The M3 chip delivers up to 60% faster performance than Intel-based MacBooks.",
+        label: "Key Board",
+        position: { top: "60%", left: "10%" },
+        cameraX: 0,
+        cameraY: 1,
+        cameraZ: 1, // ← zoom to chip area
+        info: "Magic Keyboard with Touch ID features a sleek, wireless design with a rechargeable battery that lasts about a month or more between charges.",
       },
       {
         id: 2,
         label: "Retina Display",
-        position: { top: "80%", left: "40%" },
-        cameraX: 0.5,
-        cameraY: 0.5,
-        cameraZ: 2.5, // ← zoom to screen area
+        position: { top: "60%", left: "40%" },
+        cameraX: 0,
+        cameraY: 0.4,
+        cameraZ: 3,
         info: "Liquid Retina XDR display with 1000 nits sustained brightness.",
       },
     ],
