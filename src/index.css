@@ -421,3 +421,102 @@ canvas {
   font-weight: 700;
   color: #00ffcc;
 }
+
+/* ======= */
+
+/* ========== 3D Hotspots on ProductDetail ========== */
+.hotspot3d {
+  position: absolute;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+
+.hotspotDot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 255, 204, 0.2);
+  border: 2px solid #00ffcc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  animation: hotspotPulse 2s infinite;
+}
+
+.hotspotDotInner {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #00ffcc;
+}
+
+.hotspotDotLabel {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #00ffcc;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+@keyframes hotspotPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 204, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 255, 204, 0);
+  }
+}
+
+.hotspotPopup {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(5, 5, 20, 0.92);
+  border: 1px solid rgba(0, 255, 204, 0.3);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 16px;
+  width: 220px;
+  color: white;
+  z-index: 20;
+}
+
+.hotspotPopup h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #00ffcc;
+  font-weight: 700;
+}
+
+.hotspotPopup p {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.hotspotClose {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.hotspotClose:hover {
+  opacity: 1;
+}
